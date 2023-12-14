@@ -3,6 +3,7 @@ import 'package:neobook_challenge/src/screen/busket_screen.dart';
 import 'package:neobook_challenge/src/screen/history_screen.dart';
 import 'package:neobook_challenge/src/screen/home_screen.dart';
 import 'package:neobook_challenge/src/screen/info_screen.dart';
+import 'package:neobook_challenge/src/themes/app_colors.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -33,8 +34,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
               topLeft: Radius.circular(20), topRight: Radius.circular(20)),
         ),
         child: BottomNavigationBar(
-          selectedItemColor: Colors.red,
-          unselectedItemColor: Colors.blue,
+          selectedItemColor: AppColors.green,
+          unselectedItemColor: AppColors.grey,
           type: BottomNavigationBarType.fixed,
           currentIndex: currentIndex,
           onTap: (index) => setState(() => currentIndex = index),
