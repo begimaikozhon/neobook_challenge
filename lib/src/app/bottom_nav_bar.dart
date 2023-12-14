@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:neobook_challenge/src/app/screen/busket_screen.dart';
-import 'package:neobook_challenge/src/app/screen/history_screen.dart';
-import 'package:neobook_challenge/src/app/screen/home_screen.dart';
-import 'package:neobook_challenge/src/app/screen/info_screen.dart';
+import 'package:neobook_challenge/src/screen/busket_screen.dart';
+import 'package:neobook_challenge/src/screen/history_screen.dart';
+import 'package:neobook_challenge/src/screen/home_screen.dart';
+import 'package:neobook_challenge/src/screen/info_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -40,22 +40,22 @@ class _BottomNavBarState extends State<BottomNavBar> {
           onTap: (index) => setState(() => currentIndex = index),
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.add_home_outlined),
+              icon: ImageIcon(AssetImage('assets/home-03.png')),
               label: 'Главная',
               backgroundColor: Colors.black,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: ImageIcon(AssetImage('assets/bag-03.png')),
               label: 'Корзина',
               backgroundColor: Colors.black,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: ImageIcon(AssetImage('assets/clock-01.png')),
               label: 'История',
               backgroundColor: Colors.black,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
+              icon: ImageIcon(AssetImage('assets/help-square-contained.png')),
               label: 'Инфо',
               backgroundColor: Colors.black,
             ),
