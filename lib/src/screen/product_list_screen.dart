@@ -38,6 +38,43 @@ class ProductListScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: SizedBox(
+                  height: 50,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 2,
+                                    color: AppColors.durkGrey,
+                                  ),
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(30),
+                                  )),
+                              child: const Center(
+                                child: Text('     Все    '),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Text('Фрукты'),
+                      const Text('Сухофрукты'),
+                      const Text('Овощи'),
+                      const Text('Зелень'),
+                      const Text('Чай кофе'),
+                      const Text('Молочные продукты'),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
