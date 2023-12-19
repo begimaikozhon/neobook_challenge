@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:neobook_challenge/src/components/tap_widjet.dart';
 import 'package:neobook_challenge/src/themes/app_colors.dart';
 
-class ProductListScreen extends StatelessWidget {
+class ProductListScreen extends StatefulWidget {
   const ProductListScreen({Key? key}) : super(key: key);
 
+  @override
+  State<ProductListScreen> createState() => _ProductListScreenState();
+}
+
+class _ProductListScreenState extends State<ProductListScreen> {
+  final TabController tabController;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   tabController = TabController(length: 7, vsync: this.tabController);
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,36 +58,25 @@ class ProductListScreen extends StatelessWidget {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      Row(
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 2,
-                                    color: AppColors.durkGrey,
-                                  ),
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(30),
-                                  )),
-                              child: const Center(
-                                child: Text('     Все    '),
-                              ),
-                            ),
-                          ),
-                        ],
+                      InkWell(
+                        onTap: () {},
+                        child: TapWidget(name: 'Все'),
                       ),
-                      const Text('Фрукты'),
-                      const Text('Сухофрукты'),
-                      const Text('Овощи'),
-                      const Text('Зелень'),
-                      const Text('Чай кофе'),
-                      const Text('Молочные продукты'),
+                      TapWidget(name: 'Фрукты'),
+                      TapWidget(name: 'Сухофрукты'),
+                      TapWidget(name: 'Овощи'),
+                      TapWidget(name: 'Зелень'),
+                      TapWidget(name: 'Чай кофе'),
+                      TapWidget(name: 'Молочные продукты'),
                     ],
                   ),
                 ),
               ),
+              TabBar(controller: tabController, tabs: [
+                Tab(
+                  text: 'Все',
+                )
+              ])
             ],
           ),
         ),
