@@ -9,14 +9,32 @@ class ProductListScreen extends StatefulWidget {
   State<ProductListScreen> createState() => _ProductListScreenState();
 }
 
-class _ProductListScreenState extends State<ProductListScreen> {
-  final TabController tabController;
+class _ProductListScreenState extends State<ProductListScreen>
+    with SingleTickerProviderStateMixin {
+  late final TabController tabController;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   tabController = TabController(length: 7, vsync: this.tabController);
-  // }
+  final List<Tab> _tabs = const [
+    Tab(text: 'Все'),
+    Tab(text: 'Фрукты'),
+    Tab(text: 'Сухофрукты'),
+    Tab(text: 'Овощи'),
+    Tab(text: 'Зелень'),
+    Tab(text: 'Чай кофе'),
+    Tab(text: 'Молочные продукты'),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(length: 7, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,36 +69,68 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: SizedBox(
-                  height: 50,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: TapWidget(name: 'Все'),
-                      ),
-                      TapWidget(name: 'Фрукты'),
-                      TapWidget(name: 'Сухофрукты'),
-                      TapWidget(name: 'Овощи'),
-                      TapWidget(name: 'Зелень'),
-                      TapWidget(name: 'Чай кофе'),
-                      TapWidget(name: 'Молочные продукты'),
-                    ],
-                  ),
+              // Padding(
+              //   padding: const EdgeInsets.all(10),
+              //   child: SizedBox(
+              //     height: 50,
+              //     child: ListView(
+              //       scrollDirection: Axis.horizontal,
+              //       children: [
+              //         InkWell(
+              //           onTap: () {},
+              //           child: TapWidget(name: 'Все'),
+              //         ),
+              //         TapWidget(name: 'Фрукты'),
+              //         TapWidget(name: 'Сухофрукты'),
+              //         TapWidget(name: 'Овощи'),
+              //         TapWidget(name: 'Зелень'),
+              //         TapWidget(name: 'Чай кофе'),
+              //         TapWidget(name: 'Молочные продукты'),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              SizedBox(
+                height: 50,
+                child: TabBar(
+                  controller: tabController,
+                  tabs: _tabs,
                 ),
               ),
-              TabBar(controller: tabController, tabs: [
-                Tab(
-                  text: 'Все',
-                )
-              ])
+              TabBarView(
+                controller: tabController,
+                children: const [
+                  TabViewWidget(),
+                  TabViewWidget(),
+                  TabViewWidget(),
+                  TabViewWidget(),
+                  TabViewWidget(),
+                  TabViewWidget(),
+                  TabViewWidget(),
+                ],
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class TabViewWidget extends StatelessWidget {
+  const TabViewWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 2,
+      children: [
+        Card(
+          child: Text('data'),
+        ),
+      ],
     );
   }
 }
