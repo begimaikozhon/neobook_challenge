@@ -9,31 +9,23 @@ class ProductListScreen extends StatefulWidget {
   State<ProductListScreen> createState() => _ProductListScreenState();
 }
 
-class _ProductListScreenState extends State<ProductListScreen>
-    with SingleTickerProviderStateMixin {
-  late final TabController tabController;
-
-  final List<Tab> _tabs = const [
-    Tab(text: 'Все'),
-    Tab(text: 'Фрукты'),
-    Tab(text: 'Сухофрукты'),
-    Tab(text: 'Овощи'),
-    Tab(text: 'Зелень'),
-    Tab(text: 'Чай кофе'),
-    Tab(text: 'Молочные продукты'),
+class _ProductListScreenState extends State<ProductListScreen> {
+  List categories = const [
+    'Все',
+    'Фрукты',
+    'Сухофрукты',
+    'Овощи',
+    'Зелень',
+    'Чай кофе',
+    'Молочные продукты',
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    tabController = TabController(length: 7, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    tabController.dispose();
-    super.dispose();
-  }
+  List courses = [
+    'jjjj',
+    'kkkkkk',
+    'jjiok,mjk',
+    'yyyyyyy',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -47,90 +39,88 @@ class _ProductListScreenState extends State<ProductListScreen>
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
-              TextFormField(
-                decoration: const InputDecoration(
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.search,
-                      color: AppColors.grey,
-                      size: 40,
-                    ),
-                  ),
-                  hintText: 'Быстрый поиск',
-                  hintStyle: TextStyle(color: AppColors.grey, fontSize: 16),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(25),
-                    ),
+              Container(
+                margin:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                decoration: BoxDecoration(
+                  color: const Color(0xffF8FAFB),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: AppColors.grey,
+                        size: 40,
+                      ),
+                      hintText: 'Быстрый поиск',
+                      hintStyle: TextStyle(color: AppColors.grey, fontSize: 16),
+                      border: InputBorder.none),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: SizedBox(
+                  height: 42,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: 7,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.only(left: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        decoration: BoxDecoration(
+                            color:
+                                index == 0 ? AppColors.green : AppColors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: AppColors.durkGrey)),
+                        child: Center(
+                          child: Text(
+                            categories[index],
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: index == 0
+                                    ? AppColors.white
+                                    : AppColors.durkGrey),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(10),
-              //   child: SizedBox(
-              //     height: 50,
-              //     child: ListView(
-              //       scrollDirection: Axis.horizontal,
-              //       children: [
-              //         InkWell(
-              //           onTap: () {},
-              //           child: TapWidget(name: 'Все'),
-              //         ),
-              //         TapWidget(name: 'Фрукты'),
-              //         TapWidget(name: 'Сухофрукты'),
-              //         TapWidget(name: 'Овощи'),
-              //         TapWidget(name: 'Зелень'),
-              //         TapWidget(name: 'Чай кофе'),
-              //         TapWidget(name: 'Молочные продукты'),
-              //       ],
-              //     ),
-              //   ),
-              // ),
+              const SizedBox(height: 20),
               SizedBox(
-                height: 50,
-                child: TabBar(
-                  controller: tabController,
-                  tabs: _tabs,
+                height: 350,
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          // margin: const EdgeInsets.only(left: 10),
+                          // padding: const EdgeInsets.only(
+                          //     left: 100, right: 15, top: 10, bottom: 10),
+                          decoration: BoxDecoration(
+                              color: AppColors.black,
+                              borderRadius: BorderRadius.circular(10)),
+                        )
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-              TabBarView(
-                controller: tabController,
-                children: const [
-                  TabViewWidget(),
-                  TabViewWidget(),
-                  TabViewWidget(),
-                  TabViewWidget(),
-                  TabViewWidget(),
-                  TabViewWidget(),
-                  TabViewWidget(),
-                ],
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class TabViewWidget extends StatelessWidget {
-  const TabViewWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      children: [
-        Card(
-          child: Text('data'),
-        ),
-      ],
     );
   }
 }

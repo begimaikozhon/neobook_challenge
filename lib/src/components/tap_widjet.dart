@@ -13,20 +13,17 @@ class TapWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: InkWell(
-        onTap: () {},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                width: 2,
-                color: AppColors.durkGrey,
-              ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(30),
-              )),
-          child: Center(
-            child: Text('       $name      '),
-          ),
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(
+              width: 2,
+              color: AppColors.durkGrey,
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(30),
+            )),
+        child: Center(
+          child: Text('       $name      '),
         ),
       ),
     );
