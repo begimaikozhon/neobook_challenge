@@ -97,28 +97,134 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                height: 350,
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          // margin: const EdgeInsets.only(left: 10),
-                          // padding: const EdgeInsets.only(
-                          //     left: 100, right: 15, top: 10, bottom: 10),
-                          decoration: BoxDecoration(
-                              color: AppColors.black,
-                              borderRadius: BorderRadius.circular(10)),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+              GridView.count(
+                childAspectRatio: (1 / 1.5),
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                crossAxisCount: 2,
+                children: const [
+                  GategoryList(
+                    image: '1',
+                    text: 'Яблоко золотая радуга',
+                    price: '56',
+                    // onPressed: () {},
+                  ),
+                  GategoryList(
+                    image: '2',
+                    text: 'Апельсин',
+                    price: '86',
+                    // onPressed: () {},
+                  ),
+                  GategoryList(
+                    image: '3',
+                    text: 'Драконный фрукт',
+                    price: '340',
+                    // onPressed: () {},
+                  ),
+                  GategoryList(
+                    image: '1',
+                    text: 'Яблоко золотая радуга',
+                    price: '56',
+                    // onPressed: () {},
+                  ),
+                  GategoryList(
+                    image: '2',
+                    text: 'Апельсин',
+                    price: '86',
+                    // onPressed: () {},
+                  ),
+                  GategoryList(
+                    image: '3',
+                    text: 'Драконный фрукт',
+                    price: '340',
+                    // onPressed: () {},
+                  ),
+                ],
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class GategoryList extends StatelessWidget {
+  const GategoryList({
+    super.key,
+    required this.image,
+    required this.text,
+    required this.price,
+    this.onPressed,
+  });
+  final String image;
+  final String text;
+  final String price;
+  final void Function()? onPressed;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.lifhtGrey,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: 8),
+            Image.asset('assets/unsplash_iqIJE3Jo8YM ($image).png'),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                const SizedBox(width: 12),
+                Text(
+                  text,
+                  style: const TextStyle(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 50),
+            Row(
+              children: [
+                const SizedBox(width: 12),
+                Text(
+                  price,
+                  style: const TextStyle(
+                    color: AppColors.green,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                const Text(
+                  'c',
+                  style: TextStyle(
+                    color: AppColors.green,
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            ),
+            const Spacer(),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(150, 26),
+                backgroundColor: AppColors.green,
+              ),
+              onPressed: onPressed,
+              child: const Text(
+                'Добавить',
+                style: TextStyle(
+                  color: AppColors.white,
+                  fontSize: 18,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
